@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+vector<vector<int> >dp(16 , vector<int>(16,-1));
 int solve(int m , int n){
 	if(m==0 && n==0){
 		return 1;
@@ -8,7 +9,8 @@ int solve(int m , int n){
 	if(m < 0 || n < 0){
 		return 0;
 	}
-	return  solve(m-1, n) + solve(m, n-1);
+	if(dp[m][n]!=-1) return dp[m][n];
+	return dp[m][n] = solve(m-1, n) + solve(m, n-1);
 }
 
 int main() {
